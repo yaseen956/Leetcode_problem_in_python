@@ -372,36 +372,36 @@
 #         return dummy.next
 
 # next permutation
-class Solution(object):
-    def nextPermutation(self, nums):
-        i = j = len(nums)-1
-        while i > 0 and nums[i-1] >= nums[i]:
-            i -= 1
-        if i == 0:   # nums are in descending order
-            nums.reverse()
-            return
-        k = i - 1    # find the last "ascending" position
-        while nums[j] <= nums[k]:
-            j -= 1
-            nums[k], nums[j] = nums[j], nums[k]
-            l, r = k+1, len(nums)-1  # reverse the second part
-            while l < r:
-                nums[l], nums[r] = nums[r], nums[l]
-                l += 1
-                r -= 1
-# long valid parentheses
-class Solution:
-    def longestValidParentheses(self, s: str) -> int:
-        stack=[]
-        l=['0']*len(s)
-        for ind,i in enumerate(s):
-            if i=='(':
-                stack.append(ind)
-            else:
-                if stack:
-                    l[stack.pop()]='1'
-                    l[ind]='1'
-        return max(len(i) for i in ''.join(l).split('0'))
+# class Solution(object):
+#     def nextPermutation(self, nums):
+#         i = j = len(nums)-1
+#         while i > 0 and nums[i-1] >= nums[i]:
+#             i -= 1
+#         if i == 0:   # nums are in descending order
+#             nums.reverse()
+#             return
+#         k = i - 1    # find the last "ascending" position
+#         while nums[j] <= nums[k]:
+#             j -= 1
+#             nums[k], nums[j] = nums[j], nums[k]
+#             l, r = k+1, len(nums)-1  # reverse the second part
+#             while l < r:
+#                 nums[l], nums[r] = nums[r], nums[l]
+#                 l += 1
+#                 r -= 1
+# # long valid parentheses
+# class Solution:
+#     def longestValidParentheses(self, s: str) -> int:
+#         stack=[]
+#         l=['0']*len(s)
+#         for ind,i in enumerate(s):
+#             if i=='(':
+#                 stack.append(ind)
+#             else:
+#                 if stack:
+#                     l[stack.pop()]='1'
+#                     l[ind]='1'
+#         return max(len(i) for i in ''.join(l).split('0'))
 
 # def countingSort(arr):
 #     if not arr:
@@ -775,3 +775,25 @@ class Solution:
 
 #             prev = first
 #         return dummy.next
+
+def nextpermutation(nums):
+    i = j = len(nums)-1
+    while i > 0 and nums[i-1] >= nums[i]:
+        i -= 1
+    if i == 0:
+        nums.reverse()
+        return
+    k = i-1
+    while nums[j] <= nums[k]:
+        j -= 1
+    nums[k],nums[j] = nums[j],nums[k]
+    l,r = k+1,len(nums)-1    
+    while l<r:
+        nums[l],nums[r] = nums[r],nums[l]
+        l+=1
+        r-=1
+    return nums
+        
+s = [1,3,5,4,2]
+a = nextpermutation(s)
+print(a)
