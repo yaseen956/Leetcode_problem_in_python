@@ -406,7 +406,7 @@
 # def countingSort(arr):
 #     if not arr:
 #         return arr
-        
+
 #     max_val = max(arr)
 #     count = [0] * (max_val + 1)
 
@@ -517,9 +517,9 @@
 #     def addtwonum(self, l1, l2):
 #         dummy = Listnode()
 #         res = dummy
-#         total = carry = 0 
+#         total = carry = 0
 #         while l1 or l2  or carry:
-#             total = carry 
+#             total = carry
 #             if l1:
 #                 total += l1.val
 #                 l1 = l1.next
@@ -589,7 +589,7 @@
 #             middle1  = merged[total // 2 - 1]
 #             middle2 = merged[total // 2]
 #             return (float(middle1)+ float(middle2)) / 2.0
-        
+
 # num1 = [1,3]
 # num2 = [2]
 # sol = solution()
@@ -603,7 +603,7 @@
 #             return s
 #         rows = [""] * numrows
 #         curr_rows = 0
-#         direction = -1  
+#         direction = -1
 #         for sh in s:
 #             rows[curr_rows] += sh
 #             if curr_rows == 0 or curr_rows == numrows - 1:
@@ -623,23 +623,23 @@
 #         INT_MAX = 2**31 - 1
 #         INT_MIN = -2**31
 
-#         i = 0 
+#         i = 0
 #         n = len(s)
 #         # skip all spaces
 #         while i < n and s[i] == " ":
 #             i += 1
 #         #    for sing find
-#             sign = 1 
+#             sign = 1
 #             if i < n  and s[i] == "-" or s[i] == "+":
 #                 if s[i] == "-":
 #                     sign = -1
 #                 i += 1
 #                 # for digit store
-#             num = 0 
+#             num = 0
 #             while i < n and s[i].isdigit():
 #                 digit = ord(s[i]) - ord("0")
 #                 num = num * 10 + digit
-            
+
 #                 # for overflow check
 #                 if sign* num > INT_MAX:
 #                    return INT_MAX
@@ -658,7 +658,7 @@
 #     i = 0
 #     j = 0
 #     result = []
-   
+
 #     while i < len(a) and j < len(b):
 #         if a[i] <= b[j]:
 #             result.append(a[i])
@@ -763,7 +763,7 @@
 #         dummy = listnode(0)
 #         dummy.next = head
 #         prev = dummy
-        
+
 #         while prev.next or prev.next.next:
 #             first = prev.next
 #             second = first.next
@@ -786,14 +786,31 @@ def nextpermutation(nums):
     k = i-1
     while nums[j] <= nums[k]:
         j -= 1
-    nums[k],nums[j] = nums[j],nums[k]
-    l,r = k+1,len(nums)-1    
-    while l<r:
-        nums[l],nums[r] = nums[r],nums[l]
-        l+=1
-        r-=1
+    nums[k], nums[j] = nums[j], nums[k]
+    l, r = k+1, len(nums)-1
+    while l < r:
+        nums[l], nums[r] = nums[r], nums[l]
+        l += 1
+        r -= 1
     return nums
-        
-s = [1,3,5,4,2]
+
+
+s = [1, 3, 5, 4, 2]
 a = nextpermutation(s)
 print(a)
+
+
+def validparenthesis(s):
+    stack=[]
+    l = ["0"] * len(s)
+    for ind, i in enumerate(s):
+        if i == '(':
+            stack.append(ind)
+        else:
+            if stack:
+                l[stack.pop()] = '1'
+                l[ind]= '1'
+    return max(len(i) for i in  ''.join(l).split('0'))
+a = '(())'
+b = validparenthesis(a)
+print(b)
